@@ -1,5 +1,7 @@
 /*REMEMBER TO RETURN ALL OF THE ANSWERS ON THESE TASKS, IF YOU DON'T, THE AUTOGRADER WILL NOT WORK*/
 
+const { assertUnaryLike } = require("@babel/types");
+
 /* 👀 This is your data ⬇ */
 const originalFlavors = [
   "Banana Nut Fudge",
@@ -44,10 +46,11 @@ Use the copy function below to do the following:
   1. receive an array as a parameter - you will pass in originalFlavors as an argument when the function is invoked.
   2. Return a copy of the received array  
 */
-
-function copy(/*your code here*/){
-  /*your code here*/
-}    
+// take 1 parameter - you can call it anything but its holding the place for the array you will pass in as your argument
+function copy(array){
+  return [...array];
+}
+console.log('task 1', copy(originalFlavors));
 
 
 
@@ -63,10 +66,16 @@ Confirm that an array is exactly 31 flavors. Your function should accept:
 For Example: is31Flavors(originalFlavors) will return true if your code is working properly
 */
 
-
-function is31Flavors(/*your code here*/){
- /*your code here*/
+// taking 1 parameter - it's holding the place for an array
+function is31Flavors(array){
+ if(array.length === 31){
+    return true;
+ }else{
+    return false;
+ }
+ // conditional inside of here - if it's true return true, else return false ** it should be exactly 31 items
 }
+console.log('task 2', is31Flavors(originalFlavors));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Corporate has come to you with an idea for a new flavor: Rainbow Sherbert! They think this will be a game changer. You need to modify the array to include this flavor. 
@@ -80,10 +89,15 @@ Use the addFlavor function below to do the following:
   For example: addFlavor(originalFlavors, "Rainbow Sherbert") should return the array ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla Burnt Almond"]
 */
 
-
-function addFlavor(/*your code here*/){
- /*your code here*/
+// 2 params array, string (which is holding the place for the new flavor)
+function addFlavor(array, string){
+  array.unshift(string)
+  return array;
+ // use unshift to add the new flavor to the beginning of the received array
+ // return the array
 }
+
+console.log('task 3', addFlavor(originalFlavors, 'Rainbow Sherbert'));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -96,10 +110,15 @@ Use the removeLastFlavor function below to do the following:
 
   For example: running removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]
 */
-
-function removeLastFlavor(/*your code here*/){
- /*your code here*/
+// 1 parameter which wil b ea place holder for the array
+function removeLastFlavor(array){
+  array.pop();
+  return array;
+ // use pop to remove the last item
+ // return the array
 }
+
+console.log('task 4', removeLastFlavor(originalFlavors));
 
 
 
@@ -113,10 +132,12 @@ Use the getFlavorByIndex function below to do the following:
 
   For example: running getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully
 */
-
-function getFlavorByIndex(/*your code here*/){
-  /*your code here*/
+// 2 parameters array / number (holding the place for an index)
+function getFlavorByIndex(array, number){
+  return array[number];
+  // array[0]
 }
+console.log('task 5', getFlavorByIndex(originalFlavors, 2));
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -133,12 +154,22 @@ Use the removeFlavorByName function below to do the following:
 
   HINT: You can use .splice() for this
 */
+// 2 parameters array and the string we want to remove
+function removeFlavorByName(array, flavor){
+  for (let i = 0; i < array.length; i++){
+    if (array [i] === flavor){
+      array.splice(i, 1);
+    }
+  }
+  return array;
+  // loop through the array and check every index for the exact match of the string, if it exists then remove it using splice
 
-function removeFlavorByName(/*your code here*/){
-  /*your code here*/
+  // .splice(start, how many items to delete);
+
+  // outside of the loop return the array
 }
 
-
+console.log('task 6', removeFlavorByName(originalFlavors, 'Rocky Road'));
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 July 7th is "World Chocolate Day" and Baskin Robins wants to create promotional materials highlighting all of their chocolate flavors. 
@@ -159,10 +190,23 @@ Use the filterByWord function below to do the following:
 
   DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem. 
 */
-
-function filterByWord(/*your code here*/){
-  /*your code here*/
+// 2 params - array / string 
+function filterByWord(array, string){
+  // create a new array to push our results to
+  const filtered = [];
+  // loop through the provided array and check every index
+  for(let i = 0; i< array.length; i++){
+    // if the index includes the string
+    if(array[i].includes(string)){
+      // push it to the new array
+      filtered.push(array[i]);
+    }
+  }
+  // outside of the loop return the new array
+  return filtered;
 }
+
+console.log('task 7', filterByWord(originalFlavors, 'Chocolate'));
 
 
 /* 💪💪💪💪💪🧁🍦🍨 STRETCH 🍨🍦🍫💪💪💪💪💪*/ 
